@@ -66,53 +66,59 @@
     <p id="countdown" class="countdown">Dans -- jours --h --m</p>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
-<script>
-    const params = new URLSearchParams(document.location.search);
-    const position = params.get('position') || 'left';
-    const toppx = params.get('top') || '100';
-    const title = params.get('title') || 'Bientot sur ce stream !';
-    const countDownDate = new Date("Nov 27, 2021 12:00:00").getTime();
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(event) {
+        const params = new URLSearchParams(document.location.search);
+        const position = params.get('position') || 'left';
+        const toppx = params.get('top') || '100';
+        const title = params.get('title') || 'Bientot sur ce stream !';
+        const countDownDate = new Date("Nov 27, 2021 12:00:00").getTime();
 
-    function roundup(x, up = 5) { return (x%up)?x-x%up+up:x }
-    function isroundup(x, up = 5) { return roundup(x, up) === x }
-
-    document.getElementById("title").innerHTML = title;
-    document.getElementById("ad").style.top = `${toppx}px`;
-    document.getElementById("ad").classList.add('pos-' + position);
-
-    const interfunc = function() {
-        const now = new Date().getTime();
-        const distance = countDownDate - now;
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        if (isroundup(minutes, 1)) {
-            gsap.timeline({defaults: { duration: 1 }});
-            if (position === 'left') {
-                gsap.fromTo("#ad",{x: -400, opacity: 0}, {x: 0, opacity: 1});
-            } else {
-                gsap.fromTo("#ad",{x: 400, opacity: 0}, {x: 0, opacity: 1});
-            }
-
-            const y = setTimeout(function() {
-                if (position === 'left') {
-                    gsap.fromTo("#ad", {x: 0, opacity: 1}, {x: -400, opacity: 0});
-                } else {
-                    gsap.fromTo("#ad", {x: 0, opacity: 1}, {x: 400, opacity: 0});
-                }
-                clearTimeout(y);
-            }, 1000 * 8);
+        function roundup(x, up = 5) {
+            return (x % up) ? x - x % up + up : x
         }
 
-        document.getElementById("countdown").innerHTML = "Dans " + days + " jours " + hours + "h " + minutes + "m ";
-    }
+        function isroundup(x, up = 5) {
+            return roundup(x, up) === x
+        }
 
-    const x = setInterval(interfunc, 1000 * 60);
-    interfunc();
+        document.getElementById("title").innerHTML = title;
+        document.getElementById("ad").style.top = `${toppx}px`;
+        document.getElementById("ad").classList.add('pos-' + position);
+
+        const interfunc = function () {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if (isroundup(minutes, 1)) {
+                gsap.timeline({defaults: {duration: 1}});
+                if (position === 'left') {
+                    gsap.fromTo("#ad", {x: -400, opacity: 0}, {x: 0, opacity: 1});
+                } else {
+                    gsap.fromTo("#ad", {x: 400, opacity: 0}, {x: 0, opacity: 1});
+                }
+
+                const y = setTimeout(function () {
+                    if (position === 'left') {
+                        gsap.fromTo("#ad", {x: 0, opacity: 1}, {x: -400, opacity: 0});
+                    } else {
+                        gsap.fromTo("#ad", {x: 0, opacity: 1}, {x: 400, opacity: 0});
+                    }
+                    clearTimeout(y);
+                }, 1000 * 8);
+            }
+
+            document.getElementById("countdown").innerHTML = "Dans " + days + " jours " + hours + "h " + minutes + "m ";
+        }
+
+        const x = setInterval(interfunc, 1000 * 60);
+        interfunc();
+    });
 </script>
 </body>
 </html>
-<html></html>
