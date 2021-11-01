@@ -60,7 +60,7 @@
     </style>
 </head>
 <body>
-<div id="ad" class="ad" style="opacity: 0;">
+<div id="ad" class="ad" style="display: none; opacity: 0;">
     <div class="title" id="title">Bientot sur ce stream !</div>
     <img class="logo" src="https://media.discordapp.net/attachments/767100885301067819/829123836066398248/LOGOV2_vCOLOR_1.png?width=1193&height=671">
     <p id="countdown" class="countdown">Dans -- jours --h --m</p>
@@ -98,16 +98,16 @@
             if (isroundup(minutes, 1)) {
                 gsap.timeline({defaults: {duration: 1}});
                 if (position === 'left') {
-                    gsap.fromTo("#ad", {x: -400, opacity: 0}, {x: 0, opacity: 1});
+                    gsap.fromTo("#ad", {x: -400, opacity: 0, display: 'none'}, {x: 0, opacity: 1, display: 'block'});
                 } else {
-                    gsap.fromTo("#ad", {x: 400, opacity: 0}, {x: 0, opacity: 1});
+                    gsap.fromTo("#ad", {x: 400, opacity: 0, display: 'none'}, {x: 0, opacity: 1, display: 'block'});
                 }
 
                 const y = setTimeout(function () {
                     if (position === 'left') {
-                        gsap.fromTo("#ad", {x: 0, opacity: 1}, {x: -400, opacity: 0});
+                        gsap.fromTo("#ad", {x: 0, opacity: 1, display: 'block'}, {x: -400, opacity: 0, display: 'none'});
                     } else {
-                        gsap.fromTo("#ad", {x: 0, opacity: 1}, {x: 400, opacity: 0});
+                        gsap.fromTo("#ad", {x: 0, opacity: 1, display: 'block'}, {x: 400, opacity: 0, display: 'none'});
                     }
                     clearTimeout(y);
                 }, 1000 * 8);
@@ -116,8 +116,11 @@
             document.getElementById("countdown").innerHTML = "Dans " + days + " jours " + hours + "h " + minutes + "m ";
         }
 
-        const x = setInterval(interfunc, 1000 * 60);
-        interfunc();
+        const init = setTimeout(function() {
+            interfunc();
+            setInterval(interfunc, 1000 * 60);
+            clearTimeout(init);
+        }, 1000);
     });
 </script>
 </body>
