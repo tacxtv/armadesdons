@@ -71,6 +71,7 @@
         const params = new URLSearchParams(document.location.search);
         const position = params.get('position') || 'left';
         const toppx = params.get('top') || '100';
+        const spawn = params.get('spawn') || 15;
         const title = params.get('title') || 'Bientot sur ce stream !';
         const countDownDate = new Date("Nov 27, 2021 12:00:00").getTime();
 
@@ -95,7 +96,7 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            if (isroundup(minutes, 1)) {
+            if (isroundup(minutes, spawn)) {
                 gsap.timeline({defaults: {duration: 1}});
                 if (position === 'left') {
                     gsap.fromTo("#ad", {x: -400, opacity: 0, display: 'none'}, {x: 0, opacity: 1, display: 'block'});
