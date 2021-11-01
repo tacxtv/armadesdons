@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="http://fonts.cdnfonts.com/css/legionary" rel="stylesheet">
+    <link href="http://fonts.cdnfonts.com/css/tektur-tight" rel="stylesheet">
+    <title>ARMA PUB</title>
+    <style>
+        html, body {
+            width: 1920px;
+            height: 1080px;
+        }
+        body { background-color: rgba(0, 0, 0, 0); margin: 0px auto; overflow: hidden; position: relative; }
+        
+        .logo {
+            transform: scale(1.25);
+        }
+        .logo,.countdown,.title {
+            width: 100%;
+            text-align: center;
+        }
+        .countdown {
+            margin: 0;
+            font-size: 48px;
+        }
+        .title,.countdown {
+            text-align: center;
+            font-family: Legionary, 'Tektur Tight';
+            color: #ebbb6d;
+            text-shadow: 2px 0 0 #e78855, -2px 0 0 #e78855, 0 2px 0 #e78855, 0 -2px 0 #e78855, 1px 1px #e78855, -1px -1px 0 #e78855, 1px -1px 0 #e78855, -1px 1px 0 #e78855;
+        }
+        .title {
+            font-size: 36px;
+        }
+        .ad {
+            -webkit-animation: fadeIn 1s;
+            animation: fadeIn 1s;
+            background-image: url('https://media.discordapp.net/attachments/767100885301067819/767101067028463616/TemplateArmaSansLogo.png?width=1193&height=671');
+            position: relative;
+            width: 400px;
+            position: absolute;
+        }
+        .pos-left {
+            left: 0;
+        }
+        .pos-right {
+            right: 0;
+        }
+
+        @-webkit-keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+<div id="ad" class="ad" style="opacity: 0;">
+    <div class="title" id="title">Bientot sur ce stream !</div>
+    <img class="logo" src="https://media.discordapp.net/attachments/767100885301067819/829123836066398248/LOGOV2_vCOLOR_1.png?width=1193&height=671">
+    <p id="countdown" class="countdown">Dans -- jours --h --m</p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+<script>
+    const params = new URLSearchParams(document.location.search);
+    const position = params.get('position') || 'left';
+    const toppx = params.get('top') || '100';
+    const title = params.get('title') || 'Bientot sur ce stream !';
+    const countDownDate = new Date("Nov 27, 2021 12:00:00").getTime();
+
+    function roundup(x, up = 5) { return (x%up)?x-x%up+up:x }
+    function isroundup(x, up = 5) { return roundup(x, up) === x }
+
+    document.getElementById("title").innerHTML = title;
+    document.getElementById("ad").style.top = `${toppx}px`;
+    document.getElementById("ad").classList.add('pos-' + position);
+
+    const interfunc = function() {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        if (isroundup(minutes, 1)) {
+            gsap.timeline({defaults: { duration: 1 }});
+            if (position === 'left') {
+                gsap.fromTo("#ad",{x: -400, opacity: 0}, {x: 0, opacity: 1});
+            } else {
+                gsap.fromTo("#ad",{x: 400, opacity: 0}, {x: 0, opacity: 1});
+            }
+
+            const y = setTimeout(function() {
+                if (position === 'left') {
+                    gsap.fromTo("#ad", {x: 0, opacity: 1}, {x: -400, opacity: 0});
+                } else {
+                    gsap.fromTo("#ad", {x: 0, opacity: 1}, {x: 400, opacity: 0});
+                }
+                clearTimeout(y);
+            }, 1000 * 8);
+        }
+
+        document.getElementById("countdown").innerHTML = "Dans " + days + " jours " + hours + "h " + minutes + "m ";
+    }
+
+    const x = setInterval(interfunc, 1000 * 60);
+    interfunc();
+</script>
+</body>
+</html>
+<html></html>
