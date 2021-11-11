@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ARMA BARRE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&amp;family=Work+Sans:wght@400;700;900&amp;display=swap" rel="stylesheet">
+    <style>@import url('https://fonts.googleapis.com/css?family=Open+Sans');</style>
+    <style media="all">
+        html,
+        body {
+            position: absolute;
+            top: 0;
+            height: 1080px;
+            left: 0;
+            width: 1920px;
+            margin: 0;
+            font-family: "Open Sans";
+        }
+        #globalMontant {
+            position: absolute;
+            top: -2px;
+            height: 1080px;
+            left: 0;
+            width: 380px;
+            overflow: hidden;
+            border: none;
+        }
+        #globalTopDonation {
+            position: absolute;
+            top: -2px;
+            height: 1080px;
+            left: -1260px;
+            width: 1920px;
+            overflow: hidden;
+            border: none;
+        }
+        #globalCenter {
+            position: absolute;
+            top: -2px;
+            height: 1080px;
+            left: 0px;
+            width: 1300px;
+            overflow: hidden;
+            border: none;
+        }
+        #streamer {
+            position: absolute;
+            top: -2px;
+            height: 1080px;
+            left: 1270px;
+            width: 650px;
+            overflow: hidden;
+            border: none;
+        }
+        #streamerMontant {
+            position: absolute;
+            top: -2px;
+            height: 1080px;
+            left: 1270px;
+            width: 380px;
+            overflow: hidden;
+            border: none;
+        }
+        #streamerTopDonation {
+            position: absolute;
+            top: -2px;
+            height: 1080px;
+            left: 0px;
+            width: 1920px;
+            overflow: hidden;
+            border: none;
+        }
+        #globalTextBar {
+            position: absolute;
+            left: 96px;
+            bottom: 12px;
+            z-index: 10000;
+            color: white;
+            font-size: 16px;
+            line-height: 40px;
+            width: 175px;
+            text-align: center;
+            text-shadow: none !important;
+        }
+        #streamerTextBar {
+            position: absolute;
+            left: 1365px;
+            bottom: 12px;
+            z-index: 10000;
+            color: white;
+            font-size: 16px;
+            line-height: 40px;
+            width: 175px;
+            text-align: center;
+            text-shadow: none !important;
+        }
+        #globalTextDonation {
+            position: absolute;
+            left: 524px;
+            bottom: 34px;
+            z-index: 10000;
+            text-shadow: none !important;
+            font-size: 16px;
+            color: rgb(204, 204, 204);
+            font-size: 0.8em;
+        }
+        #streamerTextDonation {
+            position: absolute;
+            left: auto;
+            right: 97px;
+            bottom: 34px;
+            z-index: 10000;
+            text-shadow: none !important;
+            font-size: 16px;
+            color: rgb(204, 204, 204);
+            font-size: 0.8em;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<div id="globalTextBar" font-family="Open Sans">Global</div>
+<div id="globalTextDonation" font-family="Open Sans">Global</div>
+<div id="streamerTextBar" font-family="Open Sans">Streamer</div>
+<div id="streamerTextDonation" font-family="Open Sans">Streamer</div>
+<iframe
+        id="streamerTopDonation"
+        noresize=yes
+        scrolling="no"
+        src="https://overlays.tiltify.com/GSLBhR55uFASO_OKErODIB5eH9PurAUm"
+></iframe>
+<iframe
+        id="globalCenter"
+        noresize=yes
+        scrolling="no"
+        src="https://overlays.tiltify.com/p1aOLRk3CrzBo6L8PlRDYeGNcJ5s1-0-"
+></iframe>
+<iframe
+        id="globalTopDonation"
+        noresize=yes
+        scrolling="no"
+        src="https://overlays.tiltify.com/p1aOLRk3CrzBo6L8PlRDYeGNcJ5s1-0-"
+></iframe>
+<iframe
+        id="globalMontant"
+        noresize=yes
+        scrolling="no"
+        src="https://overlays.tiltify.com/p1aOLRk3CrzBo6L8PlRDYeGNcJ5s1-0-"
+></iframe>
+<iframe
+        id="streamerMontant"
+        noresize=yes
+        scrolling="no"
+        src="https://overlays.tiltify.com/GSLBhR55uFASO_OKErODIB5eH9PurAUm"
+></iframe>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(event) {
+        const params = new URLSearchParams(document.location.search);
+        document.getElementById("streamerTextBar").innerHTML = params.get('streamer') || 'Streamer';
+        document.getElementById("streamerTextDonation").innerHTML = params.get('streamer') || 'Streamer';
+
+        document.getElementById("streamerTopDonation").src = 'https://overlays.tiltify.com/' + params.get('key');
+        document.getElementById("streamerMontant").src = 'https://overlays.tiltify.com/' + params.get('key');
+    });
+</script>
+</body>
+</html>
