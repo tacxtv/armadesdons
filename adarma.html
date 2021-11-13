@@ -74,7 +74,7 @@
         const bottompx = params.get('bottom');
         const spawn = params.get('spawn') || 15;
         const title = params.get('title') || 'Bientot sur ce stream !';
-        const utc = params.get('utc') || 1;
+        const utc = parseInt(params.get('utc'), 10) || 1;
         const fuseau = 11 + utc;
         const countDownDate = new Date(`Nov 27, 2021 ${fuseau}:00:00`).getTime();
 
