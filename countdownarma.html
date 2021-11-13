@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.cdnfonts.com/css/tektur-tight" rel="stylesheet">
+    <link href="https://tacxtv.github.io/armadesdons/Legionary.ttf" rel="stylesheet">
+    <title>ARMA PUB</title>
+    <style>
+        @font-face {
+            font-family: 'Legionary';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Legionary'), url('https://tacxtv.github.io/armadesdons/Legionary.ttf') format('ttf');
+        }
+
+        html, body {
+            width: auto;
+            height: auto;
+        }
+        body { background-color: rgba(0, 0, 0, 0); margin: 0 auto; overflow: hidden; position: relative; }
+
+        .countdown {
+            margin: 0;
+            font-size: 48px;
+            /*noinspection CssNoGenericFontName*/
+            font-family: Legionary, 'Tektur Tight';
+            color: #ebbb6d;
+            text-shadow: 2px 0 0 #e78855, -2px 0 0 #e78855, 0 2px 0 #e78855, 0 -2px 0 #e78855, 1px 1px #e78855, -1px -1px 0 #e78855, 1px -1px 0 #e78855, -1px 1px 0 #e78855;
+        }
+    </style>
+</head>
+<body>
+<p id="countdown" class="countdown">--:--:--</p>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(event) {
+        const params = new URLSearchParams(document.location.search);
+        const utc = parseInt(params.get('utc'), 10) || 1;
+        const fuseau = 11 + utc;
+        const countDownDate = new Date(`Nov 27, 2021 ${fuseau}:00:00`).getTime();
+
+        const interfunc = function () {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            // noinspection EqualityComparisonWithCoercionJS
+            if (hours < 10) hours = `0${hours}`;
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            // noinspection EqualityComparisonWithCoercionJS
+            if (minutes < 10) minutes = `0${minutes}`;
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            // noinspection EqualityComparisonWithCoercionJS
+            if (seconds < 10) seconds = `0${seconds}`;
+
+            document.getElementById("countdown").innerHTML = `${hours}:${minutes}:${seconds}`;
+        }
+
+        const init = setTimeout(function() {
+            interfunc();
+            setInterval(interfunc, 1000);
+            clearTimeout(init);
+        }, 1000);
+    });
+</script>
+</body>
+</html>
