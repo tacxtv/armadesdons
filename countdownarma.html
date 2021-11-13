@@ -36,23 +36,27 @@
 <p id="countdown" class="countdown">--:--:--</p>
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function(event) {
+        let countdown
         const params = new URLSearchParams(document.location.search);
         const utc = parseInt(params.get('utc'), 10) || 1;
         const fuseau = 11 + utc;
-        const countDownDate = new Date(`Nov 27, 2021 ${fuseau}:00:00`).getTime();
+        const countDownDate = new Date(`Nov 28, 2021 ${fuseau}:00:00`).getTime();
 
         const interfunc = function () {
             const now = new Date().getTime();
             const distance = countDownDate - now;
 
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = `00:00:00`;
+                clearInterval(countdown)
+                return
+            }
+
             let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            // noinspection EqualityComparisonWithCoercionJS
             if (hours < 10) hours = `0${hours}`;
             let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            // noinspection EqualityComparisonWithCoercionJS
             if (minutes < 10) minutes = `0${minutes}`;
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            // noinspection EqualityComparisonWithCoercionJS
             if (seconds < 10) seconds = `0${seconds}`;
 
             document.getElementById("countdown").innerHTML = `${hours}:${minutes}:${seconds}`;
@@ -60,7 +64,7 @@
 
         const init = setTimeout(function() {
             interfunc();
-            setInterval(interfunc, 1000);
+            countdown = setInterval(interfunc, 1000);
             clearTimeout(init);
         }, 1000);
     });
