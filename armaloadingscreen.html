@@ -72,7 +72,7 @@
         initialize_time(timer);
       });
 
-      function flash(){
+      function flash() {
         $('#flash').addClass('active');
       }
 
@@ -82,7 +82,7 @@
         vid_select[2]='./data/Waiting_Arma2021_ASTEROIDV2.webm';
         vid_select[3]='./data/Waiting_Arma2021_BASE.webm';
         vid_select[4]='./data/Waiting_Arma2021_ASTEROIDV2.webm';
-        var number = Math.floor(Math.random()*(4-1))+1;
+        var number = Math.floor(Math.random() * (4 - 1)) + 1;
         document.getElementById("Video_loop").setAttribute("src", vid_select[number]);
         setTimeout('flash()', 5900);
         setTimeout('video_speed()', 6000);
@@ -90,7 +90,7 @@
 
       function video_speed() {
         var speed='./data/Waiting_Arma2021_HYPER.webm';
-        document.getElementById("Video_loop").setAttribute("src",speed);
+        document.getElementById("Video_loop").setAttribute("src", speed);
         setTimeout('video_choix()', 5800);
       }
       
@@ -103,17 +103,12 @@
       function startTimer(duration, display) {
           var timer = duration, minutes, seconds;
           setInterval(function () {
-              minutes = parseInt(timer / 60, 10)
+              minutes = parseInt(timer / 60, 10);
               seconds = parseInt(timer % 60, 10);
-
               minutes = minutes < 10 ? "0" + minutes : minutes;
               seconds = seconds < 10 ? "0" + seconds : seconds;
-
               display.textContent = minutes + ":" + seconds;
-
-              if (--timer < 0) {
-                  timer = 0;
-              }
+              if (--timer < 0) timer = 0;
           }, 1000);
       }
     </script>
