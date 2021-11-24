@@ -73,8 +73,19 @@
         video_choix();
         
         const params = new URLSearchParams(document.location.search);
-        const timer = parseInt(params.get('timer'), 10) || 20;
-        initialize_time(timer);
+        const timer = parseInt(params.get('timer'), 10) || -1;
+        const utc = parseInt(params.get('utc'), 10) || 1;
+        const fuseau = 11 + utc;
+        
+        const countDownDate = new Date(`Nov 28, 2021 ${fuseau}:00:00`).getTime();
+        
+        if (timer == -1) {
+          const now = new Date().getTime();
+          const distance = countDownDate - now;
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        }
+        
+        initialize_time(timer == -1 ? minutes : timer);
       });
 
       function flash() {
