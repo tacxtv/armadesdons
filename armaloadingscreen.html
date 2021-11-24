@@ -8,7 +8,13 @@
     <style>
       body { background-color: rgba(0, 0, 0, 0); margin: 0px auto; overflow: hidden; position: relative; }
       
-      #flash{
+      .timeflash {
+        animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+      }
+      
+      #flash {
         margin-top: 0px;
         height: 1080px;
         width: 1920px;
@@ -60,6 +66,24 @@
               background-color: #FFFFFF;
           }
       }
+      
+      @keyframes shake {
+        10%, 90% {
+          transform: translate3d(-1px, 0, 0);
+        }
+
+        20%, 80% {
+          transform: translate3d(2px, 0, 0);
+        }
+
+        30%, 50%, 70% {
+          transform: translate3d(-4px, 0, 0);
+        }
+
+        40%, 60% {
+          transform: translate3d(4px, 0, 0);
+        }
+      }
     </style>
   </head>
   <body>
@@ -99,6 +123,7 @@
         vid_select[3]='./data/Waiting_Arma2021_BASE.webm';
         vid_select[4]='./data/Waiting_Arma2021_ASTEROIDV2.webm';
         var number = Math.floor(Math.random() * (4 - 1)) + 1;
+        $('#time').removeClass('timeflash');
         document.getElementById("Video_loop").setAttribute("src", vid_select[number]);
         setTimeout('flash()', 5900);
         setTimeout('video_speed()', 6000);
@@ -107,6 +132,7 @@
       function video_speed() {
         var speed='./data/Waiting_Arma2021_HYPER.webm';
         document.getElementById("Video_loop").setAttribute("src", speed);
+        $('#time').addClass('timeflash');
         setTimeout('video_choix()', 5800);
       }
       
