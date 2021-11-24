@@ -40,9 +40,6 @@
           top: 0px; left: 0px;
       }
 
-
-
-
       @-webkit-keyframes demo {
           0% {
               background-color: White;
@@ -69,7 +66,10 @@
     <script type="text/javascript">
       document.addEventListener("DOMContentLoaded", function(event) {
         video_choix();
-        initialize_time();
+        
+        const params = new URLSearchParams(document.location.search);
+        const timer = parseInt(params.get('timer'), 10) || 20;
+        initialize_time(timer);
       });
 
       function flash(){
@@ -94,11 +94,10 @@
         setTimeout('video_choix()', 5800);
       }
       
-      function initialize_time() {
-        var Minutes = 20;
-          var Temps = 60 * Minutes;
+      function initialize_time(timer = 20) {
+        var Temps = 60 * timer;
         var display = document.querySelector('#time');
-          startTimer(Temps, display);
+        startTimer(Temps, display);
       }
 
       function startTimer(duration, display) {
