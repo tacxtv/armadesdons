@@ -6,12 +6,12 @@
       body { background-color: rgba(0, 0, 0, 0); margin: 0px auto; overflow: hidden; position: relative; }
       
       #flash{
-        margin-top:0px;
-        height:1080px;
-        width:1920px;
-        position:absolute;
+        margin-top: 0px;
+        height: 1080px;
+        width: 1920px;
+        position: absolute;
       }
-      .active{
+      .active {
         -webkit-animation-name: demo;
           -webkit-animation-duration: 500ms;
           -webkit-animation-iteration-count: 1;
@@ -26,7 +26,9 @@
         font-size : 48px;
         font : 'Franklin Gothic Medium', appearance; 
         position: absolute;
-          top: 40px; left: 40px;
+        top: 40px;
+        left: 40px;
+        z-index: 99;
       }
 
       .waiting_loop {
