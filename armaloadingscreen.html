@@ -94,7 +94,9 @@
     </div>
     <script type="text/javascript">
       document.addEventListener("DOMContentLoaded", function(event) {
-        video_choix();
+        let debug = parseInt(params.get('debug'), 10) || 0;
+        
+        video_choix(debug);
         
         const params = new URLSearchParams(document.location.search);
         const timer = parseInt(params.get('timer'), 10) || -1;
@@ -118,7 +120,7 @@
         $('#flash').addClass('active');
       }
 
-      function video_choix() {
+      function video_choix(debug = 0) {
         var vid_select = new Array()
         vid_select[1]='./data/Waiting_Arma2021_BASE.webm';
         vid_select[2]='./data/Waiting_Arma2021_ASTEROIDV2.webm';
@@ -128,7 +130,7 @@
         $('#time').removeClass('timeflash');
         document.getElementById("Video_loop").setAttribute("src", vid_select[number]);
         setTimeout('flash()', 5900);
-        setTimeout('video_speed()', 6000);
+        setTimeout('video_speed()', 1000 * 5 * 60);
       }
 
       function video_speed() {
