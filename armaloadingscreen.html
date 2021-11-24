@@ -110,11 +110,10 @@
         if (timer == -1) {
           const now = new Date().getTime();
           const distance = countDownDate - now;
-          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
           
-          initialize_time(minutes);
+          initialize_time(distance);
         } else {
-          initialize_time(timer);
+          initialize_time(timer * 1000 * 60);
         }
       });
 
@@ -142,19 +141,18 @@
         setTimeout(`video_choix(${debug})`, 5800);
       }
       
-      function initialize_time(timer = 20) {
-        var Temps = 60 * timer;
+      function initialize_time(distance) {
         var display = document.querySelector('#time');
         startTimer(Temps, display);
       }
 
-      function startTimer(duration, display) {
-          var timer = duration, minutes, seconds;
+      function startTimer(distance, display) {
           setInterval(function () {
-              minutes = parseInt(timer / 60, 10);
-              seconds = parseInt(timer % 60, 10);
-              minutes = minutes < 10 ? "0" + minutes : minutes;
-              seconds = seconds < 10 ? "0" + seconds : seconds;
+              let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+              if (minutes < 10) minutes = `0${minutes}`;
+              let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+              if (seconds < 10) seconds = `0${seconds}`;
+            
               if (minutes == 0 && seconds == 0) {
                 display.textContent = 'STARTING SOON';
               } else {
