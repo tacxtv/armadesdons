@@ -130,7 +130,7 @@
         $('#time').removeClass('timeflash');
         document.getElementById("Video_loop").setAttribute("src", vid_select[number]);
         setTimeout('flash()', 5900);
-        setTimeout('video_speed()', 1000 * 5 * 60);
+        setTimeout('video_speed()', debug ? 6000 : 1000 * 5 * 60);
       }
 
       function video_speed() {
