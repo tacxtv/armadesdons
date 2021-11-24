@@ -149,6 +149,7 @@
       function startTimer(distance, display) {
           let focus = distance
           setInterval(function () {
+              console.log('focus', focus);
               let minutes = Math.floor((focus % (1000 * 60 * 60)) / (1000 * 60));
               if (minutes < 10) minutes = `0${minutes}`;
               let seconds = Math.floor((focus % (1000 * 60)) / 1000);
