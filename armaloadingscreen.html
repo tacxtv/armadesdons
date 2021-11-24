@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="./waiting.js"></script>        
+    <script src="./timer.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <style>
+      #flash{
+        margin-top:0px;
+        height:1080px;
+        width:1920px;
+        position:absolute;
+      }
+      .active{
+        -webkit-animation-name: demo;
+          -webkit-animation-duration: 500ms;
+          -webkit-animation-iteration-count: 1;
+          -webkit-animation-timing-function: linear;
+        -moz-animation-name: demo;
+          -moz-animation-duration: 500ms;
+          -moz-animation-iteration-count: 1;
+          -moz-animation-timing-function: linear;
+      }
+      #time {
+        color : green;
+        font-size : 48px;
+        font : Franklin Gothic Medium, appearance; 
+        position: absolute;
+          top: 300px; left: 40px;
+      }
+
+      .waiting_loop {
+          position: absolute;
+      }
+
+      .digit {
+          position: absolute;
+          top: 0px; left: 0px;
+      }
+
+
+
+
+      @-webkit-keyframes demo {
+          0% {
+              background-color: White;
+              opacity:1;
+          }
+          22% {
+              background-color: White;
+          }
+          77% {
+              background-color: White;
+          }
+          100% {
+              background-color: #FFFFFF;
+          }
+      }
+    </style>
+  </head>
+  <body onload="initialize_time();">
+    <div id="flash"></div>
+    <div class="waiting_loop">
+      <p id="time"></p>
+      <video id="Video_loop" class="digit" playsinline autoplay muted loop src="./data/Waiting_Arma2021_BASE.mov" type="video/webm">
+    </div>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function(event) {
+        video_choix();
+      });
+
+      function flash(){
+        $('#flash').addClass('active');
+      }
+
+      function video_choix() {
+        var vid_select = new Array()
+        vid_select[1]='./data/Waiting_Arma2021_BASE.webm';
+        vid_select[2]='./data/Waiting_Arma2021_ASTEROIDV2.webm';
+        vid_select[3]='./data/Waiting_Arma2021_BASE.webm';
+        vid_select[4]='./data/Waiting_Arma2021_ASTEROIDV2.webm';
+        var number = Math.floor(Math.random()*(4-1))+1;
+        document.getElementById("Video_loop").setAttribute("src", vid_select[number]);
+        setTimeout('flash()', 5900);
+        setTimeout('video_speed()', 6000);
+      }
+
+      function video_speed() {
+        var speed='./data/Waiting_Arma2021_HYPER.webm';
+        document.getElementById("Video_loop").setAttribute("src",speed);
+        setTimeout('video_choix()', 5800);
+      }
+    </script>
+  </body>
+</html>
