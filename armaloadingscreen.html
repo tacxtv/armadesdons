@@ -13,7 +13,7 @@
         transform: translate3d(0, 0, 0);
         backface-visibility: hidden;
         font-size: 70px !important;
-        left: 0px !important;
+        left: -35px !important;
       }
       
       #flash {
@@ -39,7 +39,9 @@
         font-family: 'Orbitron', sans-serif;
         position: absolute;
         top: 70px;
-        left: 35px;
+        left: 0;
+		width: 336px;
+		text-align: center;
         z-index: 99;
         margin: 0;
       }
@@ -79,7 +81,7 @@
         }
 
         30%, 50%, 70% {
-          transform: translate3d(-4px, 4px, 0);
+          transform: translate3d(-4px, 4px, 0) scale(1.05);
         }
 
         40%, 60% {
@@ -92,7 +94,7 @@
     <div id="flash"></div>
     <div class="waiting_loop">
       <p id="time"></p>
-      <video id="Video_loop" class="digit" playsinline autoplay muted loop src="./data/Waiting_Arma2021_BASE.webm" type="video/webm">
+      <video id="Video_loop" class="digit" playsinline autoplay muted loop src="https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_BASE.webm" type="video/webm">
     </div>
     <script type="text/javascript">
       document.addEventListener("DOMContentLoaded", function(event) {
@@ -120,10 +122,10 @@
 
       function video_choix(debug = 0) {
         var vid_select = new Array()
-        vid_select[1]='./data/Waiting_Arma2021_BASE.webm';
-        vid_select[2]='./data/Waiting_Arma2021_ASTEROIDV2.webm';
-        vid_select[3]='./data/Waiting_Arma2021_BASE.webm';
-        vid_select[4]='./data/Waiting_Arma2021_ASTEROIDV2.webm';
+        vid_select[1]='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_BASE.webm';
+        vid_select[2]='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_ASTEROIDV2.webm';
+        vid_select[3]='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_BASE.webm';
+        vid_select[4]='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_ASTEROIDV2.webm';
         var number = Math.floor(Math.random() * (4 - 1)) + 1;
         $('#time').removeClass('timeflash');
         document.getElementById("Video_loop").setAttribute("src", vid_select[number]);
@@ -132,7 +134,7 @@
       }
 
       function video_speed(debug = 0) {
-        var speed='./data/Waiting_Arma2021_HYPER.webm';
+        var speed='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_HYPER.webm';
         document.getElementById("Video_loop").setAttribute("src", speed);
         $('#time').addClass('timeflash');
         setTimeout(`video_choix(${debug})`, 5800);
