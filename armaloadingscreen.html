@@ -90,6 +90,30 @@
         document.getElementById("Video_loop").setAttribute("src",speed);
         setTimeout('video_choix()', 5800);
       }
+      
+      function initialize_time() {
+        var Minutes = 20;
+          var Temps = 60 * Minutes;
+        var display = document.querySelector('#time');
+          startTimer(Temps, display);
+      }
+
+      function startTimer(duration, display) {
+          var timer = duration, minutes, seconds;
+          setInterval(function () {
+              minutes = parseInt(timer / 60, 10)
+              seconds = parseInt(timer % 60, 10);
+
+              minutes = minutes < 10 ? "0" + minutes : minutes;
+              seconds = seconds < 10 ? "0" + seconds : seconds;
+
+              display.textContent = minutes + ":" + seconds;
+
+              if (--timer < 0) {
+                  timer = 0;
+              }
+          }, 1000);
+      }
     </script>
   </body>
 </html>
