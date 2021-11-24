@@ -139,7 +139,7 @@
         var speed='./data/Waiting_Arma2021_HYPER.webm';
         document.getElementById("Video_loop").setAttribute("src", speed);
         $('#time').addClass('timeflash');
-        setTimeout('video_choix()', 5800);
+        setTimeout(`video_choix(${debug})`, 5800);
       }
       
       function initialize_time(timer = 20) {
