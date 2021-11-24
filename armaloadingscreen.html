@@ -58,7 +58,7 @@
       }
     </style>
   </head>
-  <body onload="initialize_time();">
+  <body>
     <div id="flash"></div>
     <div class="waiting_loop">
       <p id="time"></p>
@@ -67,6 +67,7 @@
     <script type="text/javascript">
       document.addEventListener("DOMContentLoaded", function(event) {
         video_choix();
+        initialize_time();
       });
 
       function flash(){
