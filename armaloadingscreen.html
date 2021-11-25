@@ -125,10 +125,16 @@
       function video_choix(debug = 0) {
         var vid_select = new Array()
         vid_select[1]='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_BASE.webm';
-        vid_select[2]='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_ASTEROIDV2.webm';
-        vid_select[3]='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_BASE.webm';
-        vid_select[4]='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_ASTEROIDV2.webm';
-        var number = Math.floor(Math.random() * (4 - 1)) + 1;
+        vid_select[2]='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_PLANET.webm';
+        vid_select[3]='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_SOLEIL2.webm';
+        vid_select[4]='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_VAISSEAU.webm';
+        vid_select[5]='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_ASTEROIDV2.webm';
+        vid_select[6]='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_BASE.webm';
+        vid_select[7]='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_PLANET.webm';
+        vid_select[8]='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_SOLEIL2.webm';
+        vid_select[9]='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_VAISSEAU.webm';
+        vid_select[10]='https://tacxtv.github.io/armadesdons/data/Waiting_Arma2021_ASTEROIDV2.webm';
+        var number = Math.floor(Math.random() * (10 - 1)) + 1;
         $('#time').removeClass('timeflash');
         document.getElementById("Video_loop").setAttribute("src", vid_select[number]);
         setTimeout('flash()', 5900);
