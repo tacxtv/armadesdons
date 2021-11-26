@@ -89,18 +89,9 @@
         let countdown, convert
         const params = new URLSearchParams(document.location.search);
         const utc = parseInt(params.get('utc'), 10) || 1;
-        const utcUniversal = 1000 * 60 * utc;
 
         const interfunc = function () {
-            if (utc == 0) {
-                convert = new Date().getTime()
-            } else if (utc < 0) {
-                convert = new Date().getTime() - utcUniversal
-            } else {
-                convert = new Date().getTime() + utcUniversal
-            }
-            
-            const now = new Date(convert).getTime();
+            const now = new Date().setHours(date.getHours() + utc).getTime();
 
             let hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             if (hours < 10) hours = `0${hours}`;
