@@ -88,11 +88,10 @@
     document.addEventListener("DOMContentLoaded", function(event) {
         let countdown
         const params = new URLSearchParams(document.location.search);
-        const utc = parseInt(params.get('utc'), 10) || 1;
-        const fuseau = 11 + utc;
+        const tz = params.get('tz') || 'Europe/Paris';
 
         const interfunc = function () {
-            const now = new Date().toLocaleString("fr-FR", {timeZone: "Europe/Paris"}).getTime();
+            const now = new Date().toLocaleString("fr-FR", {timeZone: tz}).getTime();
 
             let hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             if (hours < 10) hours = `0${hours}`;
