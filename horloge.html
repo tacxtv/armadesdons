@@ -91,8 +91,9 @@
         const utc = parseInt(params.get('utc'), 10) || 1;
 
         const interfunc = function () {
-            const date = new Date()
-            const now = new Date().setHours(date.getHours() + utc).getTime();
+            const date = new Date();
+            date.setHours(date.getHours() + utc);
+            const now = new Date(date).getTime();
 
             let hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             if (hours < 10) hours = `0${hours}`;
