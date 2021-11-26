@@ -92,7 +92,7 @@
         const fuseau = 11 + utc;
 
         const interfunc = function () {
-            const now = new Date().getTime();
+            const now = new Date().toLocaleString("fr-FR", {timeZone: "Europe/Paris"}).getTime();
 
             let hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             if (hours < 10) hours = `0${hours}`;
