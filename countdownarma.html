@@ -90,7 +90,7 @@
         const params = new URLSearchParams(document.location.search);
         const utc = parseInt(params.get('utc'), 10) || 1;
         const fuseau = 11 + utc;
-        const countDownDate = new Date(`Nov 25, 2021 ${fuseau}:00:00`).getTime();
+        const countDownDate = new Date(`Nov 26, 2021 ${fuseau}:00:00`).getTime();
 
         const interfunc = function () {
             const now = new Date().getTime();
