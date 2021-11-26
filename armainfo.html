@@ -39,7 +39,7 @@
             left: 0;
             -webkit-animation: fadeIn 1s;
             animation: fadeIn 1s;
-            background-image: url('https://media.discordapp.net/attachments/767100885301067819/767101067028463616/TemplateArmaSansLogo.png?width=1193&height=671');
+            background-image: url('https://cdn.discordapp.com/attachments/911061427224215593/912707096766713886/logoWithOut.png?width=1193&height=671');
             position: relative;
             width: 400px;
             position: absolute;
@@ -63,7 +63,7 @@
 <div id="ad" class="ad" style="display: none; opacity: 0;">
     <div class="title" id="title">Bientot sur ce stream !</div>
     <img class="logo" src="https://media.discordapp.net/attachments/767100885301067819/829123836066398248/LOGOV2_vCOLOR_1.png?width=1193&height=671">
-    <p id="countdown" class="countdown">Dans -- jours --h --m</p>
+    <p id="countdown" class="countdown"></p>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
 <script type="text/javascript">
@@ -73,7 +73,7 @@
         const toppx = params.get('top') || '100';
         const bottompx = params.get('bottom');
         const spawn = params.get('spawn') || 15;
-        const title = params.get('title') || 'Bientot sur ce stream !';
+        const cmd = params.get('cmd') || '!arma !don !goal';
         const utc = parseInt(params.get('utc'), 10) || 1;
         const fuseau = 11 + utc;
         const countDownDate = new Date(`Nov 27, 2021 ${fuseau}:00:00`).getTime();
@@ -86,7 +86,7 @@
             return roundup(x, up) === x
         }
 
-        document.getElementById("title").innerHTML = title;
+        document.getElementById("countdown").innerHTML = cmd;
         if (!bottompx) {
             document.getElementById("ad").style.top = `${toppx}px`;
         } else {
