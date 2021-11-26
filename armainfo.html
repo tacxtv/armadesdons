@@ -74,6 +74,8 @@
         const bottompx = params.get('bottom');
         const spawn = params.get('spawn') || 15;
         const title = params.get('title') || 'Bientot sur ce stream !';
+        const fuseau = 11 + utc;
+        const countDownDate = new Date(`Nov 27, 2021 ${fuseau}:00:00`).getTime();
 
         function roundup(x, up = 5) {
             return (x % up) ? x - x % up + up : x
@@ -92,6 +94,11 @@
         document.getElementById("ad").classList.add('pos-' + position);
 
         const interfunc = function () {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            
             if (isroundup(minutes, spawn)) {
                 gsap.timeline({defaults: {duration: 1}});
                 if (position === 'left') {
