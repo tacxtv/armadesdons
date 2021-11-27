@@ -109,7 +109,7 @@
         const utc = parseInt(params.get('utc'), 10) || 1;
         const fuseau = 11 + utc;
         
-        const countDownDate = new Date(`Nov 28, 2021 ${fuseau}:00:00`).getTime();
+        const countDownDate = new Date(`Nov 27, 2021 ${fuseau}:00:00`).getTime();
         
         if (timer == -1) {          
           initialize_time(countDownDate);
@@ -158,7 +158,7 @@
 		      const now = new Date().getTime();
               const distance = countDownDate - now;
 			  
-			  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
               if (minutes < 10) minutes = `0${minutes}`;
               let seconds = Math.floor((distance % (1000 * 60)) / 1000);
               if (seconds < 10) seconds = `0${seconds}`;
